@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pong Game - TypeScript</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #1a1a1a;
+      /* Dark background for better contrast */
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+    }
+
+    #gameContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    canvas {
+      border: 2px solid #00ffdd;
+      /* Neon-like border */
+      background-color: #000;
+      /* Black game area */
+      box-shadow: 0 0 15px #00ffdd;
+      /* Glow effect */
+      border-radius: 8px;
+      /* Slightly rounded corners for the canvas */
+    }
+
+    #instructions {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    #instructions strong {
+      color: #00ffdd;
+    }
+
+    #pauseMessage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #00ffdd;
+      padding: 20px 40px;
+      border-radius: 10px;
+      font-size: 2em;
+      display: none;
+      /* Hidden by default */
+      text-align: center;
+      border: 1px solid #00ffdd;
+    }
+
+    #gameOverMessage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #ff4da6;
+      /* Different color for game over */
+      padding: 30px 50px;
+      border-radius: 10px;
+      font-size: 2.5em;
+      display: none;
+      /* Hidden by default */
+      text-align: center;
+      border: 1px solid #ff4da6;
+    }
+
+    #gameOverMessage button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 0.6em;
+      background-color: #ff4da6;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #gameOverMessage button:hover {
+      background-color: #ff77b8;
+    }
+
+    .error-message {
+      /* Style for the script loading error message */
+      color: red;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2em;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="gameContainer">
+    <canvas id="gameCanvas"></canvas>
+    <div id="instructions">
+      Player 1: <strong>W</strong> (Up) / <strong>S</strong> (Down) &nbsp;&nbsp;&nbsp;
+      Player 2: <strong>ArrowUp</strong> / <strong>ArrowDown</strong> <br>
+      <strong>P</strong> to Pause/Resume
+    </div>
+  </div>
+  <div id="pauseMessage">PAUSED</div>
+  <div id="gameOverMessage">
+    GAME OVER
+    <div id="winnerMessage" style="font-size: 0.7em; margin-top: 10px; color: #00ffdd;"></div>
+    <button id="restartButton">Restart Game</button>
+  </div>
+
+  <!--
+        This script tag will load the compiled JavaScript from the 'dist' folder.
+        Ensure your tsconfig.json has "outDir": "./dist" and you have run 'npx tsc'.
+        The 'dist' folder should be in the same directory as this index.html file.
+    -->
+  <script type="module" src="./src/main.ts"
+    onerror="console.error('CRITICAL: Failed to load game script ../dist/main.js!'); document.body.innerHTML = '<div class=\'error-message\'>Error: The main game script (../dist/main.js) failed to load. <br>1. Ensure your \'index.html\' file is in the project root, NOT inside the \'dist\' folder. <br>2. Check if a \'dist\' folder exists in your project root and contains \'main.js\'. <br>3. Make sure you have compiled your TypeScript code (e.g., by running \'npx tsc\' in the project root). Your tsconfig.json should specify \'outDir\': \'./dist\'. <br>Open the browser developer console for more details.</div>'"></script>
+</body>
+
+</html>
